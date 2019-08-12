@@ -3,7 +3,13 @@ const app = express();
 const router = express.Router();
 const createError = require('http-errors');
 const path = require('path');
-const userController = require('./controllers/userController');
+
+
+
+import Mongo from './db/mongo'
+import MoviesController from './controllers/moviesController'
+import UserController from './controllers/userController'
+import CommentsController from './controllers/commentsController'
 
 
 
@@ -17,9 +23,20 @@ app.set('view engine', 'pug');
 
 
 //routes
-router.get('/user/login', userController.login)
 
+// movies
+const moviesController = new MoviesController()
+router.get('/movies', moviesController.getMovies)
 
+//users
+const userController = new UserController()
+router.post('/user/login', userController.login)
+
+//comments
+
+const commentsController = new CommentsController()
+router.get('/movies/:movieId/comments', commentsController.getCommentsByMovie)
+router.put('/movies/:movieId/comment', commentsController.saveComment)
 
 
 
