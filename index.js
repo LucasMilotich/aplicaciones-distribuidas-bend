@@ -31,6 +31,7 @@ router.get('/movies', moviesController.getMovies)
 //users
 const userController = new UserController()
 router.post('/user/login', userController.login)
+router.post('/user/register', userController.register)
 
 //comments
 

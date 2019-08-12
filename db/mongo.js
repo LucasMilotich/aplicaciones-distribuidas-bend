@@ -43,4 +43,28 @@ export default class Mongo {
 
     }
 
+    save(collection, element) {
+
+        let instance = this;
+        
+        return new Promise(function (resolve, reject) {
+            instance.buildConnection().then(db => {
+
+                console.log("query to execute" + JSON.stringify(element))
+                console.log("collection " + collection)
+
+                db.collection(collection).insert(element, function (err, items) {
+                    if (err) reject(err);
+                    console.log(element);
+                    resolve(element)
+
+                });
+
+
+            })
+        })
+
+
+    }
+
 }

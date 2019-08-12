@@ -3,7 +3,7 @@ var http = require("https");
 
 export default class TheMovieDbClient {
 
-    getImage(path){
+   static getImage(path){
         return "https://image.tmdb.org/t/p/w200/" + path
     }
 
@@ -27,6 +27,11 @@ export default class TheMovieDbClient {
             res.on("end", function () {
                 var body = Buffer.concat(chunks);
                 let json = JSON.parse(body.toString())
+
+                json.results.forEach(element => {
+                    element.poster_path = TheMovieDbClient.getImage(element.poster_path)
+                });
+
                 resolve({movies: json.results});
             });
 
