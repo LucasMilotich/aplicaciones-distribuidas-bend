@@ -3,6 +3,10 @@ var http = require("https");
 
 export default class TheMovieDbClient {
 
+    getImage(path){
+        return "https://image.tmdb.org/t/p/w200/" + path
+    }
+
     static discoverMovies() {
 
         var options = {

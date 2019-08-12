@@ -9,10 +9,10 @@ export default class Mongo {
 
 
         return new Promise(function (resolve, reject) {
-            MongoClient.connect('mongodb://admin:admin@localhost:32771', (err, client) => {
+            MongoClient.connect("mongodb+srv://admin:admin@cluster0-rwppz.mongodb.net/test?retryWrites=true&w=majority", (err, client) => {
                 console.log("Conectando a mongo")
                 if (err) return console.log(err)
-                resolve(client.db('movies'))
+                resolve(client.db('test'))
 
 
             })
@@ -44,8 +44,3 @@ export default class Mongo {
     }
 
 }
-
-
-
-
-
