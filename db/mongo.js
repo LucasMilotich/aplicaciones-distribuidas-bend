@@ -102,15 +102,17 @@ export default class Mongo {
                 instance.buildConnection().then(db => {
 
 
-                    console.log("query to execute" + JSON.stringify(newElement))
+                    console.log("to update" + JSON.stringify(newElement))
                     console.log("collection " + collection)
-                    instance.delete(collection, elementToUpdate)
-                    db.collection(collection).insert(newElement, function (err, items) {
-                        if (err) reject(err);
-                        console.log(newElement);
-                        resolve(newElement)
-    
-                    });
+                    instance.delete(collection, elementToUpdate).then(()=>{
+                        db.collection(collection).insert(newElement, function (err, items) {
+                            if (err) reject(err);
+                            console.log(newElement);
+                            resolve(newElement)
+        
+                        });
+                    })
+                    
     
     
                 })
@@ -129,7 +131,7 @@ export default class Mongo {
             console.log("before delete 1 ")
             instance.buildConnection().then(db => {
 
-                console.log("query to execute" + JSON.stringify(elementToDelete))
+                console.log("to delete" + JSON.stringify(elementToDelete))
                 console.log("collection " + collection)
 
                 db.collection(collection).deleteOne(elementToDelete, elementToDelete, function (err, items) {
