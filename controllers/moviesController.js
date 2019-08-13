@@ -14,7 +14,7 @@ export default class MoviesController {
 
     searchMovies(req, res,next){
         let query = req.query.query
-        console.log(req)
+        
         TheMovieDbClient.findMovie(query).then(data => {
             res.send(data)
         })

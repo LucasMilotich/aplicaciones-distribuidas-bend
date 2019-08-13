@@ -4,7 +4,7 @@ var http = require("https");
 export default class TheMovieDbClient {
 
    static getImage(path){
-        return "https://image.tmdb.org/t/p/w200/" + path
+        return "https://image.tmdb.org/t/p/w200" + path
     }
 
     static discoverMovies() {
@@ -59,7 +59,7 @@ export default class TheMovieDbClient {
           };
 
           console.log(options)
-          
+
           return new Promise(function(resolve, reject) {
           var req = http.request(options, function (res) {
             var chunks = [];
