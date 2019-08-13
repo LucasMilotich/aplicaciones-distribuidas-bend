@@ -26,7 +26,7 @@ export default class TheMovieDbClient {
 
             res.on("end", function () {
                 var body = Buffer.concat(chunks);
-                let json = JSON.parse(body.toString())
+                let json = JSON.parse(body)
 
                 json.results.forEach(element => {
                     element.poster_path = TheMovieDbClient.getImage(element.poster_path)
