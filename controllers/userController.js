@@ -27,6 +27,24 @@ export default class UserController {
         })
     }
 
+    changePassword(req, res, next){
+
+        let username = req.body.username
+        let password = req.body.new_password
+
+        let mongo = new Mongo()
+
+        mongo.update("users", {username: username}, { username: username, password: password }).then(elem => {
+
+            if (elem == null) {
+                res.send(errorBuilder("user cannot change password", 400, "not_found"))
+            } else {
+                res.send(elem)
+            }
+
+        }).catch(err => res.send(errorBuilder(err, 500, "internal_error")) )
+
+    }
 
     login(req, res, next) {
         

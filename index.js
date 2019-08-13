@@ -33,6 +33,7 @@ router.get('/movies/search', moviesController.searchMovies)
 const userController = new UserController()
 router.post('/user/login', userController.login)
 router.post('/user/register', userController.register)
+router.post('/user/change_password', userController.changePassword)
 
 //comments
 

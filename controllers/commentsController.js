@@ -21,8 +21,22 @@ export default class CommentsController {
 }
 
     saveComment(req, res,next){
-        const error = errorBuilder("not implemented", 404, "not_implemented")
-        return next(error)
+
+        let username = req.body.username
+        let comment = req.body.comment
+        let movieId = req.body.movie_id
+
+        let mongo = new Mongo()
+        
+        mongo.save("comments", { username: username, comment: comment, movie_id: movieId }).then(elem => {
+            console.log(elem)
+            if (elem == null) {
+                res.send(errorBuilder("error in comment", 500, "error"))
+            } else {
+                res.send(elem)
+            }
+
+        })
     }
 
 }
