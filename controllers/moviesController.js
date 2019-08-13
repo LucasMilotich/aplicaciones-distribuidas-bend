@@ -13,8 +13,11 @@ export default class MoviesController {
     }
 
     searchMovies(req, res,next){
-        const error = errorBuilder("not implemented", 404, "not_implemented")
-        return next(error)
+        let query = req.query.query
+        console.log(req)
+        TheMovieDbClient.findMovie(query).then(data => {
+            res.send(data)
+        })
     }
 
 

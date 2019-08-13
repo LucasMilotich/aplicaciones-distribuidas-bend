@@ -49,8 +49,7 @@ export default class TheMovieDbClient {
     })
     }
 
-
-    findMovie(keyword){
+   static  findMovie(keyword){
         var options = {
             "method": "GET",
             "hostname": "api.themoviedb.org",
@@ -58,6 +57,9 @@ export default class TheMovieDbClient {
             "path": `/3/search/movie?include_adult=false&page=1&query=${keyword}&language=en-US&api_key=71a4edb01b7d0d764e48e21bec96f77a`,
             "headers": {}
           };
+
+          console.log(options)
+          
           return new Promise(function(resolve, reject) {
           var req = http.request(options, function (res) {
             var chunks = [];

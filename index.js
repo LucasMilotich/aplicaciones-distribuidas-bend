@@ -27,6 +27,7 @@ app.set('view engine', 'pug');
 // movies
 const moviesController = new MoviesController()
 router.get('/movies', moviesController.getMovies)
+router.get('/movies/search', moviesController.searchMovies)
 
 //users
 const userController = new UserController()
@@ -38,6 +39,10 @@ router.post('/user/register', userController.register)
 const commentsController = new CommentsController()
 router.get('/movies/:movieId/comments', commentsController.getCommentsByMovie)
 router.put('/movies/:movieId/comment', commentsController.saveComment)
+
+
+
+
 
 
 
