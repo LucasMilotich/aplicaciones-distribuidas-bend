@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build-babel": "babel -d ./build ./ -s",
-    "build": "babel ./ --out-dir dist",
+    "build": "babel -d ./build . -s --ignore 'node_modules/**/*.js'",
     "clean": "rm -rf build && mkdir build",
-    "start": "babel-node index.js",
+    "start": "npm run clean && npm run build && babel-node ./build/index.js",
     "dev": "nodemon --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
