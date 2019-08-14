@@ -8,7 +8,7 @@
     "build": "babel ./src -d ./build -s",
     "clean": "rm -rf build && mkdir build",
     "start": "npm run clean && npm run build && babel-node ./build/index.js",
-    "dev": "nodemon --exec babel-node index.js",
+    "dev": "nodemon --exec babel-node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

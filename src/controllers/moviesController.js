@@ -8,9 +8,14 @@ export default class MoviesController {
     
     getMovies(req, res,next){
         TheMovieDbClient.discoverMovies().then(data => {
+            console.log("la data es" + data)
             res.send(data)
-        }).catch(
+        }).catch((err) => {
+            console.log("el error es es" + err)
             res.status(500).send(errorBuilder("The movie db caida", 500, "internal.error"))
+        }
+
+            
         )
     }
 
@@ -18,12 +23,13 @@ export default class MoviesController {
         let query = req.query.query
         
         TheMovieDbClient.findMovie(query).then(data => {
+            console.log("la data es" + data)
             res.send(data)
-        }).catch(
+        }).catch((err) => {
+            console.log("el error es es" + err)
             res.status(500).send(errorBuilder("The movie db caida", 500, "internal.error"))
-        )
             
-    }
+    })
 
 
 }
