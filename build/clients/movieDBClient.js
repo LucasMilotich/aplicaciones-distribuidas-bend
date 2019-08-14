@@ -49,17 +49,20 @@ function () {
 
             try {
               json = JSON.parse(body);
-              console.log("el json es: " + json);
+              console.log("el json es: " + JSON.stringify(json));
               json.results.forEach(function (element) {
                 element.poster_path = TheMovieDbClient.getImage(element.poster_path);
-              });
-              resolve({
-                movies: json.results
               });
             } catch (err) {
               console.log("El error es " + err);
               reject(err);
             }
+
+            console.log("after end");
+            resolve({
+              movies: json.results
+            });
+            console.log("after resolve");
           });
         });
         req.on('error', function (err) {
