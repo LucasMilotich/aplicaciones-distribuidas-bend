@@ -77,6 +77,6 @@ app.use(function(req, res, next) {
   return res.status(404).send({ message: 'Route '+req.url+' Not found.', code: 404, error_code: "not_found" });
 });
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log('Example app listening on port 8080!')
 });
