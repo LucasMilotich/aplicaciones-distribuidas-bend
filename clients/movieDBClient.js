@@ -83,15 +83,16 @@ export default class TheMovieDbClient {
                 try {
                      json = JSON.parse(body)
                      console.log(json)
+                     json.results.forEach(element => {
+                        element.poster_path = TheMovieDbClient.getImage(element.poster_path)
+                    });
+    
+                    resolve({movies: json.results});
                 }
                 catch (err){
                     reject(err)
                 }
-                json.results.forEach(element => {
-                    element.poster_path = TheMovieDbClient.getImage(element.poster_path)
-                });
-
-                resolve({movies: json.results});
+                
             });
 
           });
