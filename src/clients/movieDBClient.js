@@ -81,7 +81,7 @@ export default class TheMovieDbClient {
           
             res.on("end", function () {
                 var body = Buffer.concat(chunks);
-                var json 
+                var json = {}
                 try {
                      json = JSON.parse(body)
                      console.log(json)
@@ -89,11 +89,15 @@ export default class TheMovieDbClient {
                         element.poster_path = TheMovieDbClient.getImage(element.poster_path)
                     });
     
-                    resolve({movies: json.results});
+                    
                 }
                 catch (err){
                     reject(err)
                 }
+
+                console.log("after end")
+                resolve({movies: json.results});
+                console.log("after resolve")
                 
             });
 
