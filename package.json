@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build-babel": "babel -d ./build ./ -s",
-    "build": "babel -d ./build . -s --ignore 'node_modules/**/*.js'",
+    "build": "babel ./src -d ./build -s",
     "clean": "rm -rf build && mkdir build",
     "start": "npm run clean && npm run build && babel-node ./build/index.js",
     "dev": "nodemon --exec babel-node index.js",
