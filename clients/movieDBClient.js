@@ -26,13 +26,22 @@ export default class TheMovieDbClient {
 
             res.on("end", function () {
                 var body = Buffer.concat(chunks);
-                let json = JSON.parse(body)
+                var json = {}
+                try {
+                     json = JSON.parse(body)
+                     console.log("el json es: " + json)
+                     json.results.forEach(element => {
+                        element.poster_path = TheMovieDbClient.getImage(element.poster_path)
+                    });
+    
+                    resolve({movies: json.results});
+                }
+                catch (err){
+                    console.log("El error es " + err)
+                    reject(err)
+                }
 
-                json.results.forEach(element => {
-                    element.poster_path = TheMovieDbClient.getImage(element.poster_path)
-                });
-
-                resolve({movies: json.results});
+               
             });
 
             
@@ -70,7 +79,14 @@ export default class TheMovieDbClient {
           
             res.on("end", function () {
                 var body = Buffer.concat(chunks);
-                let json = JSON.parse(body.toString())
+                var json 
+                try {
+                     json = JSON.parse(body)
+                     console.log(json)
+                }
+                catch (err){
+                    reject(err)
+                }
                 json.results.forEach(element => {
                     element.poster_path = TheMovieDbClient.getImage(element.poster_path)
                 });

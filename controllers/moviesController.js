@@ -9,7 +9,9 @@ export default class MoviesController {
     getMovies(req, res,next){
         TheMovieDbClient.discoverMovies().then(data => {
             res.send(data)
-        })
+        }).catch(
+            res.status(500).send(errorBuilder("The movie db caida", 500, "internal.error"))
+        )
     }
 
     searchMovies(req, res,next){
@@ -17,7 +19,10 @@ export default class MoviesController {
         
         TheMovieDbClient.findMovie(query).then(data => {
             res.send(data)
-        })
+        }).catch(
+            res.status(500).send(errorBuilder("The movie db caida", 500, "internal.error"))
+        )
+            
     }
 
 
